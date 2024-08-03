@@ -31,6 +31,7 @@ jobs:
         docker build -t europe-west4-docker.pkg.dev/task-management-app-430719/test/tma_front_image:$IMAGE_TAG .
         docker push europe-west4-docker.pkg.dev/task-management-app-430719/test/tma_front_image:$IMAGE_TAG
       working-directory: nodeapp
+      
     - uses: hashicorp/setup-terraform@v2
     # - name: Docker Deploy
     #   run: |
