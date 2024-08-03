@@ -36,7 +36,7 @@ jobs:
       working-directory: terraform
     - name: Terraform Plan
       run: |
-        terraform -chdir=terraform/ plan \
+        terraform -chdir=plan/ plan \
         -var="project_id=task-management-app-430719" \
         -var="container_image=europe-central2-docker.pkg.dev/task-management-app-430719/test/tma_front_image:$IMAGE_TAG" \
         -var="credentials=${{ secrets.GOOGLE_SERVICE_ACCOUNT }}" \
