@@ -7,7 +7,7 @@ resource "kubernetes_deployment" "frontend" {
   }
 
   spec {
-    replicas = 3
+    replicas = 2
 
     selector {
       match_labels = {
@@ -28,7 +28,7 @@ resource "kubernetes_deployment" "frontend" {
           image = var.container_image
 
           port {
-            container_port = 80
+            container_port = 8080
           }
 
           env_from {
@@ -40,7 +40,7 @@ resource "kubernetes_deployment" "frontend" {
           liveness_probe {
             http_get {
               path = "/healthz"
-              port = 80
+              port = 8080
             }
             initial_delay_seconds = 30
             period_seconds        = 10
@@ -49,7 +49,7 @@ resource "kubernetes_deployment" "frontend" {
           readiness_probe {
             http_get {
               path = "/readiness"
-              port = 80
+              port = 8080
             }
             initial_delay_seconds = 30
             period_seconds        = 10
@@ -58,7 +58,7 @@ resource "kubernetes_deployment" "frontend" {
           startup_probe {
             http_get {
               path = "/startup"
-              port = 80
+              port = 8080
             }
             failure_threshold = 30
             period_seconds    = 10
