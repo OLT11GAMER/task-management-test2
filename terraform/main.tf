@@ -1,39 +1,14 @@
 
-data "google_client_config" "current" {}
-
-data "google_container_engine_versions" "default" {
-  location = "europe-central2"
-}
-
 resource "google_container_cluster" "primary" {
   name               = "my-gke-cluster"
-  location           = "europe-central2" # Set your preferred region
+  location           = var.region
   initial_node_count = 1
-  remove_default_node_pool = true
-  
+
   node_config {
     machine_type = "e2-medium"
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/devstorage.read_only",
-      "https://www.googleapis.com/auth/logging.write",
-      "https://www.googleapis.com/auth/monitoring.write",
-      "https://www.googleapis.com/auth/servicecontrol",
-      "https://www.googleapis.com/auth/service.management.readonly",
-      "https://www.googleapis.com/auth/trace.append",
-    ]
   }
 
-  network = "default"
-  subnetwork = "default"
-
-
-
-  logging_service    = "logging.googleapis.com/kubernetes"
-  monitoring_service = "monitoring.googleapis.com/kubernetes"
-
-  enable_kubernetes_alpha = false
-
-  public_access_cidr_blocks = ["0.0.0.0/0"]
+  # For public access, configure firewall rules and network settings accordingly
 }
 
 resource "google_container_node_pool" "primary_nodes" {
@@ -44,14 +19,7 @@ resource "google_container_node_pool" "primary_nodes" {
 
   node_config {
     machine_type = "e2-medium"
-    disk_size_gb = 32
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/devstorage.read_only",
-      "https://www.googleapis.com/auth/logging.write",
-      "https://www.googleapis.com/auth/monitoring.write",
-      "https://www.googleapis.com/auth/servicecontrol",
-      "https://www.googleapis.com/auth/service.management.readonly",
-      "https://www.googleapis.com/auth/trace.append",
-    ]
   }
 }
+
+data "google_client_config" "default" {}
