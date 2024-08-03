@@ -33,6 +33,7 @@ jobs:
     - uses: hashicorp/setup-terraform@v2
     - name: Docker Deploy
       run: |
+        gcloud auth configure-docker europe-central2-docker.pkg.dev
         gcloud container clusters get-credentials my-gke-cluster --region europe-central2 --project task-management-app-430719
         cd k8s
         kubectl apply -f deploy.yml
