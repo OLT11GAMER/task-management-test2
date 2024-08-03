@@ -4,7 +4,7 @@ WORKDIR /nodeapp
 
 COPY package*.json ./
 
-RUN npm install
+RUN NODE_ENV=development npm i
 
 COPY . .
 
