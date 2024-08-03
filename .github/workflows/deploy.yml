@@ -8,7 +8,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      IMAGE_TAG: ${{ github.sha }}
+      
+      IMAGE_TAG: 4560
       GCP_TF_STATE_BUCKET_NAME: ${{ secrets.GCP_TF_STATE_BUCKET }}
     steps:
 
@@ -34,12 +35,12 @@ jobs:
     - name: Docker Deploy
       run: |
         gcloud container clusters get-credentials my-gke-cluster --region europe-central2 --project task-management-app-430719
-        cd k8s
-        sed -i "s/IMG_TAG.*/$IMAGE_TAG/" k8s/deploy.yml
+        cd k8s        
         kubectl apply -f deploy.yml
         kubectl apply -f service.yml
         kubectl apply -f ingress.yml
 
+    # ${{ github.sha }}
     #      terraform init -backend-config="bucket=$GCP_TF_STATE_BUCKET_NAME" -backend-config="prefix=k8s"
     # terraform plan \
     # -var="container_image=europe-central2-docker.pkg.dev/task-management-app-430719/test/tma_front_image:$IMAGE_TAG" \
