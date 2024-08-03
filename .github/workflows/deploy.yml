@@ -42,4 +42,4 @@ jobs:
         -out=PLAN
       working-directory: terraform
     - name: Terraform apply
-      run: terform apply PLAN
+      run: terraform apply PLAN
