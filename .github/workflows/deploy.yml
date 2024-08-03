@@ -38,7 +38,7 @@ jobs:
         gcloud container clusters get-credentials frontend --region europe-central2-a
         sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" resources.yaml
         kubectl apply -f resources.yaml
-        kubectl expose deployment frontend --type LoadBalancer --port 80 --target-port 3000
+        kubectl expose deployment demo --type LoadBalancer --port 80 --target-port 3000
     # - uses: hashicorp/setup-terraform@v2
     # - name: Docker Deploy
     #   run: |
