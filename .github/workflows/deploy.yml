@@ -26,19 +26,25 @@ jobs:
       env:
         GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
       run: |
-        gcloud auth configure-docker europe-west4-docker.pkg.dev
+        gcloud auth configure-docker europe-central2-docker.pkg.dev
         docker pull node:14-alpine
-        docker build -t europe-west4-docker.pkg.dev/task-management-app-430719/test/tma_front_image:$IMAGE_TAG .
-        docker push europe-west4-docker.pkg.dev/task-management-app-430719/test/tma_front_image:$IMAGE_TAG
+        docker build -t europe-central2-docker.pkg.dev/task-management-app-430719/docker-images/tma_front_image:$IMAGE_TAG .
+        docker push europe-central2-docker.pkg.dev/task-management-app-430719/docker-images/tma_front_image:$IMAGE_TAG
       working-directory: nodeapp
-
-    - uses: hashicorp/setup-terraform@v2
-    - name: Docker Deploy
+    - name: Deploy to GKE
+      env:
+        GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
       run: |
-        gcloud container clusters get-credentials my-gke-cluster --region europe-west4 --project task-management-app-430719
-        cd k8s        
-        kubectl apply -f deploy.yml
-        kubectl apply -f service.yml
+        gcloud container clusters get-credentials autopilot-cluster-1 --region us-central1
+        sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" resources.yaml
+        kubectl apply -f resources.yaml
+    # - uses: hashicorp/setup-terraform@v2
+    # - name: Docker Deploy
+    #   run: |
+    #     gcloud container clusters get-credentials my-gke-cluster --region europe-central2 --project task-management-app-430719
+    #     cd k8s        
+    #     kubectl apply -f deploy.yml
+    #     kubectl apply -f service.yml
 
     # ${{ github.sha }}
     #      terraform init -backend-config="bucket=$GCP_TF_STATE_BUCKET_NAME" -backend-config="prefix=k8s"
@@ -61,3 +67,4 @@ jobs:
     # - name: Terraform apply
     #   run: terraform apply PLAN
     #   working-directory: terraform
+
