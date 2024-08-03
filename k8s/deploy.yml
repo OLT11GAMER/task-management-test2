@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: europe-central2-docker.pkg.dev/task-management-app-430719/test/tma_front_image
+          image: europe-central2-docker.pkg.dev/task-management-app-430719/test/tma_front_image:$IMAGE_TAG
           ports:
             - containerPort: 80
           envFrom:
