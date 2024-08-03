@@ -12,7 +12,6 @@ terraform {
      kubernetes = {
       source = "hashicorp/kubernetes"
       version = "2.31.0"
-      load_config_file = false
     }
   }
 }
@@ -27,6 +26,14 @@ provider "docker" {
 }
 
 provider "kubernetes" {
+  
+provider "kubernetes" {
+  load_config_file = "false"
+
+  host                   = google_container_cluster.primary.endpoint
+  cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth[0].cluster_ca_certificate)
+  token                  = data.google_client_config.default.access_token
+}
 }
 
 # provider "kubernetes"{
