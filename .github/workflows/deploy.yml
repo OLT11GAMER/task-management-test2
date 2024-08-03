@@ -33,9 +33,10 @@ jobs:
     - name: Docker Deploy
       run: |
         gcloud container clusters get-credentials my-gke-cluster --region europe-central2 --project task-management-app-430719
-        kubectl apply -f -chdir=/k8s deploy.yml
-        kubectl apply -f -chdir=/k8s service.yml
-        kubectl apply -f -chdir=/k8s ingress.yml
+        cd k8s
+        kubectl apply -f deploy.yml
+        kubectl apply -f service.yml
+        kubectl apply -f ingress.yml
     # - name: Terraform upgrade
     #   run: terraform init -upgrade
     # - name: Terraform init
