@@ -18,22 +18,22 @@ spec:
         - name: frontend
           image: europe-central2-docker.pkg.dev/task-management-app-430719/test/tma_front_image:4560
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 80
+              port: 8080
             initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /readiness
-              port: 80
+              port: 8080
             initialDelaySeconds: 30
             periodSeconds: 10
           startupProbe:
             httpGet:
               path: /startup
-              port: 80
+              port: 8080
             failureThreshold: 30
             periodSeconds: 10
