@@ -1,7 +1,7 @@
 
 resource "google_container_cluster" "primary" {
   name               = "my-gke-cluster"
-  location           = "europe-central2"
+  location           = "europe-west4"
   initial_node_count = 1
 
   node_config {

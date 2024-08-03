@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: europe-central2-docker.pkg.dev/task-management-app-430719/test/tma_front_image:4560
+          image: europe-west4-docker.pkg.dev/task-management-app-430719/test/tma_front_image:latest
           ports:
             - containerPort: 3000
           livenessProbe:

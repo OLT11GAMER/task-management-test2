@@ -17,8 +17,8 @@ terraform {
 }
 provider "google" {
   project = "task-management-app-430719"
-  region  = "europe-central2"
-  zone = "europe-central2-a"
+  region  = "europe-west4"
+  zone = "europe-west4-a"
 }
 
 provider "docker" {
