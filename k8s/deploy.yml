@@ -19,9 +19,6 @@ spec:
           image: europe-central2-docker.pkg.dev/task-management-app-430719/test/tma_front_image:4560
           ports:
             - containerPort: 80
-          envFrom:
-            - secretRef:
-                name: frontend-secrets
           livenessProbe:
             httpGet:
               path: /healthz
