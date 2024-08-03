@@ -27,10 +27,10 @@ provider "docker" {
 
 provider "kubernetes" {
   host                   = google_container_cluster.primary.endpoint
-  cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth[0].cluster_ca_certificate)
-  token                  = data.google_client_config.default.access_token
+  client_certificate     = base64decode(var.k8s_client_certificate)
+  client_key             = base64decode(var.k8s_client_key)
+  cluster_ca_certificate = base64decode(var.k8s_cluster_ca_certificate)
 }
-
 # provider "kubernetes"{
 #   host = google_container_cluster.default.endpoint
 #   token = data.google_client_config.current.access_token
