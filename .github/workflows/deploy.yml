@@ -36,9 +36,10 @@ jobs:
       run: |
         gcloud container clusters get-credentials my-gke-cluster --region europe-central2 --project task-management-app-430719
         cd k8s        
-        kubectl apply -f deploy.yml
         kubectl apply -f service.yml
         kubectl apply -f ingress.yml
+        kubectl apply -f deploy.yml
+       
 
     # ${{ github.sha }}
     #      terraform init -backend-config="bucket=$GCP_TF_STATE_BUCKET_NAME" -backend-config="prefix=k8s"
