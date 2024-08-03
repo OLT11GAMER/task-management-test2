@@ -5,7 +5,7 @@ data "google_container_engine_versions" "default" {
   location = "region=europe-central2"
 }
 
-resource "google_container_cluster" "default" {
+resource "google_container_cluster" "primary" {
   name               = "my-gke-cluster"
   location           = "region=europe-central2"
   remove_default_node_pool = true
@@ -16,15 +16,6 @@ resource "google_container_cluster" "default" {
   node_config {
     machine_type = "e2-medium"
     disk_size_gb = 32
-  }
-
-  master_authorized_networks_config {
-    cidr_blocks = [
-      {
-        cidr_block   = "0.0.0.0/0"
-        display_name = "public-access"
-      }
-    ]
   }
 }
 
