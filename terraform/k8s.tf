@@ -39,21 +39,20 @@ resource "kubernetes_deployment" "name"{
 #     region = var.region
 
 # }
-resource "kubernetes_service" "name" {
-    metadata {
-        name = "nodeapp-lb-service"
+# resource "kubernetes_service" "name" {
+#     metadata {
+#         name = "nodeapp-lb-service"
     
-    }
-    spec{
-        type = "LoadBalancer"
-        load_balancer_ip = google_compute_address.default.address
-        port{
-            port = 80
-            target_port = 80
-        }
-        selector = {
-            "type" = "frontend"
-            "app"  = "nodeapp"
-        }
-    }
-}
+#     spec{
+#         type = "LoadBalancer"
+#         load_balancer_ip = google_compute_address.default.address
+#         port{
+#             port = 80
+#             target_port = 80
+#         }
+#         selector = {
+#             "type" = "frontend"
+#             "app"  = "nodeapp"
+#         }
+#     }
+# }
