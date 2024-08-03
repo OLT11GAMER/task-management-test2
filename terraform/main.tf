@@ -2,12 +2,12 @@
 data "google_client_config" "current" {}
 
 data "google_container_engine_versions" "default" {
-  location = var.region
+  location = "region=europe-central2"
 }
 
 resource "google_container_cluster" "default" {
   name               = "my-gke-cluster"
-  location           = var.region
+  location           = "region=europe-central2"
   remove_default_node_pool = true
   initial_node_count = 1
   min_master_version = data.google_container_engine_versions.default.latest_master_version
