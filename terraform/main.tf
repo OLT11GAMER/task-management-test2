@@ -26,18 +26,7 @@ resource "google_container_cluster" "primary" {
   network = "default"
   subnetwork = "default"
 
-  ip_allocation_policy {
-    use_ip_aliases = true
-  }
 
-  master_auth {
-    username = ""
-    password = ""
-
-    client_certificate_config {
-      issue_client_certificate = false
-    }
-  }
 
   logging_service    = "logging.googleapis.com/kubernetes"
   monitoring_service = "monitoring.googleapis.com/kubernetes"
