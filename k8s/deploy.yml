@@ -13,11 +13,13 @@ spec:
     metadata:
       labels:
         app: frontend
+    env:
+      - name: IMG_TAG
+        value: "${IMG_TAG}"
     spec:
       containers:
-        - uses: ./.github/workflows/deploy.yml
         - name: frontend
-          image: europe-central2-docker.pkg.dev/task-management-app-430719/test/tma_front_image:$IMAGE_TAG
+          image: europe-central2-docker.pkg.dev/task-management-app-430719/test/tma_front_image:$IMG_TAG
           ports:
             - containerPort: 80
           envFrom:

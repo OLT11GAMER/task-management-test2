@@ -35,6 +35,7 @@ jobs:
       run: |
         gcloud container clusters get-credentials my-gke-cluster --region europe-central2 --project task-management-app-430719
         cd k8s
+        kubectl set env ./k8s/deploy IMG_TAG=$IMAGE_TAG
         kubectl apply -f deploy.yml
         kubectl apply -f service.yml
         kubectl apply -f ingress.yml
