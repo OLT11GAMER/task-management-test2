@@ -3,12 +3,12 @@ FROM node:14-alpine
 
 WORKDIR nodeapp
     
-# COPY package*.json ./
-# RUN npm install
+COPY package*.json ./
 
-# COPY . .
+RUN npm install
 
-# RUN npm run build
+COPY . .
 
-# CMD ["npm", "start"]
-RUN echo hello
+RUN npm run build
+
+CMD ["npm", "start"]
