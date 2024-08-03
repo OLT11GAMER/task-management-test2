@@ -9,7 +9,7 @@ resource "kubernetes_deployment" "name"{
     spec {
         replicas = 1
         selector{
-            match_label = {
+            match_labels = {
                 "type" = "frontend"
                 "app"  = "nodeapp"
             } 
@@ -23,7 +23,7 @@ resource "kubernetes_deployment" "name"{
                 }
             }
             spec{
-                contaniner {
+                container {
                     name = "tma_front_image"
                     image = var.container_image
                     port {
@@ -46,7 +46,7 @@ resource "kubernetes_service" "name" {
     }
     spec{
         type = "LoadBalancer"
-        load_balancer_ip = google_computr_address.default.address
+        load_balancer_ip = google_compute_address.default.address
         port{
             port = 80
             target_port = 80
