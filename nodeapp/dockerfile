@@ -15,7 +15,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port that Vite's server runs on
-EXPOSE 8080
+EXPOSE 80
 
 # Command to start the Vite server
 CMD ["npm", "run", "dev"]

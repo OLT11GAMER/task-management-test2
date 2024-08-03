@@ -58,7 +58,7 @@ resource "kubernetes_deployment" "frontend" {
           startup_probe {
             http_get {
               path = "/startup"
-              port = 8080
+              port = 80
             }
             failure_threshold = 30
             period_seconds    = 10
