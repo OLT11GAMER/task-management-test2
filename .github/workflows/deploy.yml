@@ -35,7 +35,7 @@ jobs:
     - uses: hashicorp/setup-terraform@v2
     - name: Docker Deploy
       run: |
-        gcloud container clusters get-credentials my-gke-cluster --region europe-west4-a --project task-management-app-430719
+        gcloud container clusters get-credentials my-gke-cluster --region europe-west4 --project task-management-app-430719
         cd k8s        
         kubectl apply -f deploy.yml
         kubectl apply -f service.yml
