@@ -12,6 +12,7 @@ terraform {
      kubernetes = {
       source = "hashicorp/kubernetes"
       version = "2.31.0"
+      load_config_file = false
     }
   }
 }
@@ -26,7 +27,6 @@ provider "docker" {
 }
 
 provider "kubernetes" {
-  load_config_file = false
 }
 
 # provider "kubernetes"{
