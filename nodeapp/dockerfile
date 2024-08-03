@@ -1,10 +1,10 @@
 FROM node:14-alpine
 
-WORKDIR /nodeapp
+WORKDIR /
 
 COPY package*.json ./
 
-RUN NODE_ENV=development npm i
+RUN npm install
 
 COPY . .
 
