@@ -40,7 +40,7 @@ resource "kubernetes_deployment" "frontend" {
           liveness_probe {
             http_get {
               path = "/healthz"
-              port = 8080
+              port = 80
             }
             initial_delay_seconds = 30
             period_seconds        = 10
