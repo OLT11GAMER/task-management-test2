@@ -38,8 +38,7 @@ jobs:
         cd k8s        
         kubectl apply -f deploy.yml
         kubectl apply -f service.yml
-        kubectl apply -f ingress.yml
-        kubectl expose deployment frontend-service --type LoadBalancer --port 3000 --target-port 3000
+        kubectl expose deployment frontend-deployment --type LoadBalancer --port 3000 --target-port 3000
        
 
     # ${{ github.sha }}

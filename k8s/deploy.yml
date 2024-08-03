@@ -19,21 +19,21 @@ spec:
           image: europe-central2-docker.pkg.dev/task-management-app-430719/test/tma_front_image:4560
           ports:
             - containerPort: 3000
-          # livenessProbe:
-          #   httpGet:
-          #     path: /healthz
-          #     port: 3000
-          #   initialDelaySeconds: 120
-          #   periodSeconds: 10
-          # readinessProbe:
-          #   httpGet:
-          #     path: /readiness
-          #     port: 8080
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 10
-          # startupProbe:
-          #   httpGet:
-          #     path: /startup
-          #     port: 8080
-          #   failureThreshold: 30
-          #   periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 120
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 8080
+            initialDelaySeconds: 120
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /startup
+              port: 8080
+            failureThreshold: 120
+            periodSeconds: 10
