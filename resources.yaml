@@ -5,7 +5,7 @@ metadata:
   name: demo
 spec:
   redirectToHttps:
-    enabled: true
+    enabled: false
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -58,3 +58,21 @@ spec:
         image: europe-central2-docker.pkg.dev/GOOGLE_PROJECT/docker-images/tma_front_image:IMAGE_TAG
         ports:
         - containerPort: 3000
+        livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 120
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 3000
+            initialDelaySeconds: 120
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /startup
+              port: 3000
+            failureThreshold: 120
+            periodSeconds: 10
