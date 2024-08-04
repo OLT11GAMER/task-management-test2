@@ -57,7 +57,7 @@ spec:
       - name: demo
         image: europe-central2-docker.pkg.dev/GOOGLE_PROJECT/docker-images/tma_front_image:IMAGE_TAG
         ports:
-          - containerPort: 3000
+        - containerPort: 3000
         livenessProbe:
           httpGet:
             path: /healthz

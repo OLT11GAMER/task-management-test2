@@ -1,4 +1,4 @@
-name: Deploy Nginx
+name: Deploy Front Vite
 
 on:
   push:
