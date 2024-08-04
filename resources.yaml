@@ -32,8 +32,10 @@ spec:
   selector:
     app: demo
   ports:
-  - port: 80
-    targetPort: 80
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: LoadBalancer  
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -54,3 +56,5 @@ spec:
       containers:
       - name: demo
         image: europe-central2-docker.pkg.dev/GOOGLE_PROJECT/docker-images/tma_front_image:IMAGE_TAG
+        ports:
+        - containerPort: 3000
