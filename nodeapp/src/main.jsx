@@ -20,6 +20,7 @@ import Board from "./pages/Board.jsx";
 import Search from "./pages/Search.jsx";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -42,21 +43,29 @@ const router = createBrowserRouter([
       { path: "help", element: <Help /> },
       { path: "features", element: <Features /> },
       { path: "contact", element: <Contact /> },
-      { path: "login", element: <Login /> },
-      { path: "signup", element: <SignUp /> },
       { path: "projects", element: <Projects /> },
       { path: "projects/:projectId", element: <Board /> },
       { path: "search/:searchQuery", element: <Search /> },
+      {
+        path: "/user",
+        element: <User />,
+      },
     ],
   },
   {
-    path: "/user",
-    element: <User />,
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );
